@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: audio_visualiser
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - MAX_UPLOAD_SIZE_MB=50

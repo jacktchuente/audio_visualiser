@@ -1,0 +1,53 @@
+body {
+    font-family: sans-serif;
+    margin: 2rem;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+h1 {
+    margin-bottom: 1rem;
+}
+
+form label {
+    display: block;
+    margin: 0.5rem 0;
+}
+
+input[type="file"],
+select,
+input[type="number"] {
+    margin-left: 0.5rem;
+}
+
+button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+}
+
+.presets {
+    margin: 1rem 0;
+}
+
+#progress {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+}
+
+#downloadLink {
+    display: block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.25rem;
+}
+
+#downloadLink:hover {
+    background-color: #0056b3;
+}
