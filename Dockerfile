@@ -11,7 +11,6 @@ WORKDIR /app
 
 # Copy project files
 COPY app ./app
-COPY data ./data
 COPY requirements.txt ./requirements.txt
 
 # Install Python dependencies
