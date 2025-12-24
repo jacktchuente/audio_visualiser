@@ -17,6 +17,8 @@
             <select name="style" id="styleSelect">
                 <option value="wave">Waveform</option>
                 <option value="spectrum">Spectrum</option>
+                <option value="ripple">Onde concentrique</option>
+                <option value="siri">Siri wave</option>
             </select>
         </label><br>
         <label>Résolution :
@@ -41,21 +43,22 @@
                     <option value="cline">cline</option>
                 </select>
             </label><br>
+        </div>
+        <div id="colorOptions">
             <label>Couleur du tracé :
-                <select name="color">
-                    <option value="white">blanc</option>
-                    <option value="cyan">cyan</option>
-                    <option value="magenta">magenta</option>
-                    <option value="yellow">jaune</option>
-                </select>
+                <input type="color" name="color" value="#ffffff">
             </label><br>
         </div>
+        <div id="siriOptions">
+            <label>Couleurs Siri :</label><br>
+            <label>Couleur 1 :<input type="color" id="siriColor1" value="#3b82f6"></label><br>
+            <label>Couleur 2 :<input type="color" id="siriColor2" value="#22c55e"></label><br>
+            <label>Couleur 3 :<input type="color" id="siriColor3" value="#f97316"></label><br>
+            <label>Couleur 4 :<input type="color" id="siriColor4" value="#ec4899"></label><br>
+        </div>
+        <input type="hidden" name="colors" id="siriColors">
         <label>Couleur de fond :
-            <select name="background">
-                <option value="black">noir</option>
-                <option value="white">blanc</option>
-                <option value="#191919">gris foncé</option>
-            </select>
+            <input type="color" name="background" value="#000000">
         </label><br>
         <label>Début (s) :<input type="number" name="start" min="0" step="0.1"></label><br>
         <label>Durée (s) :<input type="number" name="duration" min="1" step="0.1"></label><br>

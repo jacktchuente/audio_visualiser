@@ -2,53 +2,71 @@ document.addEventListener('DOMContentLoaded', () => {
     const form = document.getElementById('uploadForm');
     const styleSelect = document.getElementById('styleSelect');
     const waveOptions = document.getElementById('waveOptions');
+    const colorOptions = document.getElementById('colorOptions');
+    const siriOptions = document.getElementById('siriOptions');
+    const siriColors = document.getElementById('siriColors');
+    const siriColor1 = document.getElementById('siriColor1');
+    const siriColor2 = document.getElementById('siriColor2');
+    const siriColor3 = document.getElementById('siriColor3');
+    const siriColor4 = document.getElementById('siriColor4');
     const statusText = document.getElementById('statusText');
     const progressSection = document.getElementById('progress');
     const downloadLink = document.getElementById('downloadLink');
 
     // Toggle options based on style
     function updateVisibility() {
-        if (styleSelect.value === 'wave') {
-            waveOptions.style.display = '';
-        } else {
-            waveOptions.style.display = 'none';
-        }
+        const isWave = styleSelect.value === 'wave';
+        const isRipple = styleSelect.value === 'ripple';
+        const isSiri = styleSelect.value === 'siri';
+        waveOptions.style.display = isWave ? '' : 'none';
+        colorOptions.style.display = (isWave || isRipple) ? '' : 'none';
+        siriOptions.style.display = isSiri ? '' : 'none';
     }
     styleSelect.addEventListener('change', updateVisibility);
     updateVisibility();
 
     // Preset buttons
     document.getElementById('presetMinimal').addEventListener('click', () => {
-        form.style.value = 'wave';
+        form.elements.style.value = 'wave';
         form.resolution.value = '1280x720';
         form.fps.value = '25';
         form.mode.value = 'line';
-        form.color.value = 'white';
-        form.background.value = 'black';
+        form.color.value = '#ffffff';
+        form.background.value = '#000000';
         form.normalize.checked = false;
         updateVisibility();
     });
     document.getElementById('presetNeon').addEventListener('click', () => {
-        form.style.value = 'wave';
+        form.elements.style.value = 'wave';
         form.resolution.value = '1920x1080';
         form.fps.value = '30';
         form.mode.value = 'p2p';
-        form.color.value = 'magenta';
-        form.background.value = 'black';
+        form.color.value = '#ff00ff';
+        form.background.value = '#000000';
         form.normalize.checked = false;
         updateVisibility();
     });
     document.getElementById('presetSpectrum').addEventListener('click', () => {
-        form.style.value = 'spectrum';
+        form.elements.style.value = 'spectrum';
         form.resolution.value = '1280x720';
         form.fps.value = '25';
-        form.background.value = 'black';
+        form.background.value = '#000000';
         form.normalize.checked = false;
         updateVisibility();
     });
 
     form.addEventListener('submit', async (ev) => {
         ev.preventDefault();
+        if (styleSelect.value === 'siri') {
+            siriColors.value = [
+                siriColor1.value,
+                siriColor2.value,
+                siriColor3.value,
+                siriColor4.value,
+            ].join(',');
+        } else {
+            siriColors.value = '';
+        }
         const fd = new FormData(form);
         // Hide previous progress
         progressSection.style.display = 'none';
