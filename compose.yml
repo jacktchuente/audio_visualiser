@@ -1,0 +1,25 @@
+networks:
+  traefik_default:
+    external: true
+    
+    
+version: '3.8'
+services:
+  web:
+    image: audio-visualizer/audio-visualizer:latest
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.${PROJECT_NAME}-client.entrypoints=websecure
+      - traefik.http.routers.${PROJECT_NAME}-client.rule=Host(`${DOMAIN_NAME}`)
+      - traefik.http.services.${PROJECT_NAME}-client.loadbalancer.server.port=8000
+      - traefik.http.routers.${PROJECT_NAME}-client-http.entrypoints=web
+      - traefik.http.routers.${PROJECT_NAME}-client-http.middlewares=to-https
+      - traefik.http.routers.${PROJECT_NAME}-client.service=${PROJECT_NAME}-client
+      - traefik.http.routers.${PROJECT_NAME}-client.tls=true
+      - traefik.http.routers.${PROJECT_NAME}-client.tls.certresolver=letsencrypt
+      - traefik.http.middlewares.to-https.redirectscheme.scheme=websecure
+    environment:
+      - MAX_UPLOAD_SIZE_MB=50
+    networks:
+      - traefik_default
